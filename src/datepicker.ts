@@ -969,11 +969,6 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
 
         if (this.config.altInput) {
             this.altInput = this._createAltInput();
-            if (this.input) {
-                this.input.after(this.altInput);
-            } else {
-                this.element.append(this.altInput);
-            }
         }
     }
 
@@ -1016,20 +1011,41 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
      * Create alternate input field.
      */
     private _createAltInput() {
-        const input = document.createElement('input');
+        let input: HTMLInputElement;
 
-        input.type = 'text';
-        input.readOnly = !this.config.allowInput;
+        if (this.config.altInput instanceof HTMLInputElement) {
+            input = this.config.altInput;
+
+            if (this.input) {
+                input.dir = this.input.dir;
+            }
+        } else {
+            input = document.createElement('input');
+
+            input.type = 'text';
+            input.readOnly = !this.config.allowInput;
+
+            if (this.input) {
+                this.input.id && (input.id = this.input.id);
+                input.placeholder = this.input.placeholder;
+                input.disabled = this.input.disabled;
+                input.required = this.input.required;
+                input.tabIndex = this.input.tabIndex;
+                input.dir = this.input.dir;
+
+                this.input.type = 'hidden';
+                this.input.id = '';
+            }
+        }
 
         if (this.input) {
-            this.input.id && (input.id = this.input.id);
-            input.placeholder = this.input.placeholder;
-            input.disabled = this.input.disabled;
-            input.required = this.input.required;
-            input.tabIndex = this.input.tabIndex;
-
-            this.input.type = 'hidden';
-            this.input.id = '';
+            this.input.after(input);
+        } else {
+            if (this.element.contains(this.pickerElement)) {
+                this.pickerElement.before(input);
+            } else {
+                this.element.append(input);
+            }
         }
 
         return input;

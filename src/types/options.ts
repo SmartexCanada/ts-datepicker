@@ -26,7 +26,7 @@ export interface Options<E extends HTMLElement = HTMLInputElement> {
     /**
      * An additional text field to display the date with the format from `altFieldFormat`.
      */
-    altInput: boolean;
+    altInput: boolean | HTMLInputElement;
 
     /**
      * Date format for the `altField` input.
