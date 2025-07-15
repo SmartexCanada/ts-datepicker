@@ -1044,6 +1044,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
                 ? null
                 : this.input.value
             ))
+            || this.element.dataset.date
             || null;
 
         if (preloadedDate) {
