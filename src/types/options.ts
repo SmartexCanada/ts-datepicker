@@ -188,6 +188,11 @@ export interface Options<E extends HTMLElement = HTMLInputElement> {
     dynamicRange: boolean;
 
     /**
+     * Override rtl text direction
+     */
+    rtl: Nullable<boolean>;
+
+    /**
      * Specifies which event from the input element displays the picker popup.
      * Can be either `click` or `focus`, `true` for both, or `false` for neither.
      */
@@ -229,7 +234,7 @@ export interface Options<E extends HTMLElement = HTMLInputElement> {
      * Possible values are from 0 (Sunday) to 6 (Saturday).
      * Overrides value set in selected locale.
      */
-    weekStart: DayOfWeek | null;
+    weekStart: Nullable<DayOfWeek>;
 
     //
     //  Callbacks

@@ -94,6 +94,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     public locale: Locale = DatePicker.locales.default;
     public dateFormat!: string | DatePickerFormat;
     public weekStart: DayOfWeek = 0;
+    public rtl: boolean = false;
     public minDate: Date | null = null;
     public maxDate: Date | null = null;
     public minView: ViewType = 'days';
@@ -126,6 +127,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     private _inputType?: string;
     private _inputId?: string;
     private _inputReadOnly?: boolean;
+    private _inputDirection!: string;
 
     private _rendered: boolean = false;
     private _editMode: boolean = false;
@@ -261,6 +263,8 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
                 this.input.readOnly = this._inputReadOnly;
         }
         this.input = null as any;
+
+        this.element.dir = this._inputDirection!;
 
         this.altInput?.remove();
         this.altInput = null as any;
@@ -704,11 +708,12 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         }
 
         this._render();
+        this._syncTextDirection();
 
         if (input && !this.inline) {
-            this._syncTextDirection(input);
             this._setPosition();
         }
+
         this.pickerElement.classList.add(classes.active);
         this.visible = true;
 
@@ -765,6 +770,8 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         this._parseConfig();
         this._limitViewDate();
         this.currentView = currentView;
+
+        this.element.dir = this.rtl ? 'rtl' : 'ltr';
 
         this.inline = this.config.inline || !this.input;
 
@@ -859,6 +866,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             classList.add(classes.active);
 
             this._views[this.currentView]?.update();
+            this._syncTextDirection();
 
             const input = this.altInput || this.input;
             if (input && !this.inline) {
@@ -936,6 +944,12 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             ? config.weekStart
             : this.locale.weekStart;
 
+        this.rtl = config.rtl !== null ? config.rtl : (
+            this.locale.rtl
+            || this.element.dir === 'rtl'
+            || false
+        );
+
         if (config.multipleDates === 0 || config.multipleDates === false) {
             config.multipleDates = 1;
         }
@@ -1005,6 +1019,9 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             this.input.type = 'text';
             this.input.readOnly = !this.config.allowInput;
         }
+
+        this._inputDirection = this.element.dir;
+        this.element.dir = this.rtl ? 'rtl' : 'ltr';
 
         if (this.config.altInput) {
             this.altInput = this._createAltInput();
@@ -1334,9 +1351,10 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     /**
      * Sync text direction with input
      */
-    private _syncTextDirection(input: HTMLElement) {
-        const direction = getTextDirection(input);
-        const parent = input.parentElement;
+    private _syncTextDirection() {
+        const input = this.altInput || this.input;
+        const direction = getTextDirection(input || this.element);
+        const parent = input?.parentElement || this.element;
 
         if (!parent || direction !== getTextDirection(parent)) {
             this.pickerElement.dir = direction;
@@ -1426,7 +1444,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
                     adjustment = scrollRight - inputRect.right;
                 }
             }
-            else if (getTextDirection(input) === 'rtl') {
+            else if (this.rtl) {
                 positionX = inputRect.right - pickerRect.width < scrollLeft ? 'left' : 'right';
             }
             else {

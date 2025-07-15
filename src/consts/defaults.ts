@@ -39,6 +39,7 @@ export const defaults: Options<HTMLElement> = {
     position: 'auto',
     range: false,
     dynamicRange: true,
+    rtl: null,
     showOtherMonths: true,
     selectOtherMonths: true,
     selectOtherYears: true,
