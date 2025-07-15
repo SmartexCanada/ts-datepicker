@@ -15,6 +15,4 @@ export type Locale = {
     rtl?: boolean
 }
 
-export type CustomLocale =
-    Omit<Locale, "today" | "clear" | "format" | "weekStart">
-    & Partial<Pick<Locale, "today" | "clear" | "format" | "weekStart">>;
+export type CustomLocale = Partial<Locale>;
