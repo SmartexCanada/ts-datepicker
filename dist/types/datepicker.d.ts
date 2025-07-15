@@ -76,7 +76,7 @@ export declare class DatePicker<E extends HTMLElement = HTMLInputElement> extend
         enterEditMode: () => void;
         exitEditMode: (update?: boolean) => void;
     };
-    constructor(element: E | string, options: DatePickerOptions<E>);
+    constructor(element: E | string, options?: DatePickerOptions<E>);
     /**
      * Destroy instance
      */
