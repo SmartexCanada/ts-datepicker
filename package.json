@@ -1,0 +1,48 @@
+{
+    "name": "@smartexcan/ts-datepicker",
+    "version": "1.0.0",
+    "description": "Lightweight, dependency-free datepicker written in typescript.",
+    "license": "MIT",
+    "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "browser": "dist/index.min.js",
+    "scripts": {
+        "build:js": "node scripts/build-js.mjs",
+        "build:types": "npm run clean-types && tspc --emitDeclarationOnly && npm run fix-types",
+        "build:css": "node scripts/build-css.mjs",
+        "build": "npm run build:js && npm run build:types && npm run build:css",
+        "clean-types": "node scripts/clean-types.mjs",
+        "fix-types": "node scripts/fix-locale-types.mjs",
+        "dev": "opener ./index-dev.html",
+        "tsc": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.21",
+        "esbuild": "^0.25.5",
+        "esbuild-plugin-umd-wrapper": "^3.0.0",
+        "esbuild-style-plugin": "^1.6.3",
+        "fs-extra": "^11.3.0",
+        "less": "^4.3.0",
+        "opener": "^1.5.2",
+        "postcss-prettify": "^0.3.4",
+        "ts-patch": "^3.3.0",
+        "typescript": "^5.8.3",
+        "typescript-transform-paths": "^3.5.5"
+    },
+    "exports": {
+        ".": {
+            "node": null,
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/index.min.mjs",
+            "require": "./dist/index.min.js",
+            "default": "./dist/index.min.js"
+        },
+        "./locales/*": {
+            "types": "./dist/types/i18n/locales/*.d.ts",
+            "import": "./dist/locales/*.mjs",
+            "default": "./dist/locales/*.js"
+        }
+    }
+}

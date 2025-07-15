@@ -1,0 +1,45 @@
+//
+//  Datepicker
+//  _____________________________________________
+
+.datepicker {
+    display: none;
+    position: absolute;
+    user-select: none;
+    z-index: var(--datepicker-z-index, @datepicker--z-index);
+
+    &.inline {
+        border-color: var(--datepicker-border-color-inner);
+        display: inline-block;
+        position: static;
+
+        .datepicker-picker {
+            box-shadow: none;
+        }
+    }
+
+    &.active {
+        display: inline-block;
+    }
+
+    &.has-week-numbers {
+        .datepicker-picker {
+            width: var(--datepicker-width-weeks, @datepicker--width-weeks);
+        }
+    }
+
+    &-picker {
+        background-color: var(--datepicker-background-color, @datepicker--background-color);
+        border-color: var(--datepicker-border-color);
+        border-style: var(--datepicker-border-style);
+        border-radius: var(--datepicker-border-radius);
+        border-width: var(--datepicker-border-width);
+        box-shadow: var(--datepicker-shadow, none);
+        box-sizing: content-box;
+        color: var(--datepicker-color, inherit);
+        display: flex;
+        flex-direction: column;
+        font-size: var(--datepicker-font-size, inherit);
+        width: var(--datepicker-width, @datepicker--width);
+    }
+}

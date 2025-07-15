@@ -1,0 +1,25 @@
+//
+//  Buttons
+//  _____________________________________________
+
+.datepicker-buttons {
+    border-top: 1px solid var(--datepicker-border-color-inner);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--datepicker-button-min-width, (100% / 3)), 1fr));
+    grid-auto-rows: var(--datepicker-button-height);
+    padding: var(--datepicker-padding);
+}
+
+.datepicker-button {
+    .button-reset();
+    background-color: var(--datepicker-button-background-color);
+    border-radius: var(--datepicker-button-border-radius);
+    color: var(--datepicker-button-color);
+    padding: var(--datepicker-button-padding);
+    transition: var(--datepicker-button-transition-duration);
+
+    &:hover {
+        background-color: var(--datepicker-button-background-color-hover);
+        color: var(--datepicker-button-color-hover);
+    }
+}

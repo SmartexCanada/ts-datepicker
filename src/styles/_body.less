@@ -1,0 +1,65 @@
+//
+//  Body
+//  _____________________________________________
+
+.datepicker-body {
+    display: flex;
+    padding: var(--datepicker-padding);
+
+    &.hidden {
+        display: none;
+    }
+
+    &--cells {
+        display: grid;
+        flex-grow: 1;
+
+        &.days {
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: var(--datepicker-day-cell-size);
+        }
+
+        &.months {
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: var(--datepicker-month-cell-height);
+        }
+
+        &.years {
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: var(--datepicker-year-cell-height);
+        }
+
+        &.weeks {
+            grid-template-columns: 1fr;
+            grid-auto-rows: var(--datepicker-day-cell-size);
+        }
+    }
+
+    &--day-names {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        margin: 8px 0;
+    }
+
+    &--day-name {
+        align-items: center;
+        display: flex;
+        color: var(--datepicker-day-name-color);
+        font-size: var(--datepicker-day-name-font-size);
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &--week-numbers {
+        flex-shrink: 0;
+
+        .datepicker-body--day-names {
+            grid-template-columns: var(--datepicker-day-cell-size);
+        }
+    }
+}
+
+.datepicker-days {
+    flex-grow: 1;
+}

@@ -1,0 +1,89 @@
+@datepicker--theme-color: #38bdf8;  // tailwind 4 sky 400
+@datepicker--theme-color-darker: darken(@datepicker--theme-color, 8%);
+@datepicker--theme-color-rgb: 56, 189, 248;
+@datepicker--color-over-theme: #fff;
+
+@datepicker--background-color: #fff;
+@datepicker--padding: 8px;
+@datepicker--z-index: 100;
+
+@datepicker-day-cell-size: 36px;
+@datepicker--width: (@datepicker-day-cell-size * 7) + (@datepicker--padding * 2);
+@datepicker--width-weeks: (@datepicker-day-cell-size * 8) + (@datepicker--padding * 2);
+
+//
+//  Variables
+//  _____________________________________________
+
+.datepicker {
+    --datepicker-theme-color: @datepicker--theme-color;
+    --datepicker-theme-color-darker: @datepicker--theme-color-darker;
+    --datepicker-theme-color-rgb: @datepicker--theme-color-rgb;
+    --datepicker-color-over-theme: @datepicker--color-over-theme;
+
+    --datepicker-color: rgba(0, 0, 0, .87);
+    --datepicker-color-dark: #000;
+    --datepicker-color-other: rgba(0, 0, 0, .5);
+    --datepicker-color-disabled: rgba(0, 0, 0, .3);
+
+    --datepicker-background-color: @datepicker--background-color;
+    --datepicker-border-color-inner: #eee;
+    --datepicker-border-color: transparent;
+    --datepicker-border-style: solid;
+    --datepicker-border-radius: 4px;
+    --datepicker-border-width: 0;
+    --datepicker-font-size: 1rem;
+    --datepicker-padding: @datepicker--padding;
+    --datepicker-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    --datepicker-z-index: @datepicker--z-index;
+
+    --datepicker-day-cell-size: @datepicker-day-cell-size;
+    --datepicker-width: ~'calc(var(--datepicker-day-cell-size, @{datepicker-day-cell-size}) * 7 + var(--datepicker-padding, @{datepicker--padding}) * 2)';
+    --datepicker-width-weeks: ~'calc(var(--datepicker-day-cell-size, @{datepicker-day-cell-size}) * 8 + var(--datepicker-padding, @{datepicker--padding}) * 2)';
+    --datepicker-month-cell-height: 48px;
+    --datepicker-year-cell-height: 64px;
+
+    --datepicker-button-background-color: transparent;
+    --datepicker-button-background-color-hover: rgba(0, 0, 0, .05);
+    --datepicker-button-border-radius: var(--datepicker-border-radius);
+    --datepicker-button-color: inherit;
+    --datepicker-button-color-hover: var(--datepicker-color-dark);
+    --datepicker-button-height: 32px;
+    --datepicker-button-padding: 4px 8px;
+    --datepicker-button-min-width: ~'calc(100% / 3)';
+    --datepicker-button-transition-duration: .1s;
+
+    --datepicker-nav-action-size: var(--datepicker-button-height);
+    --datepicker-nav-action-background-color: var(--datepicker-button-background-color);
+    --datepicker-nav-action-background-color-hover: var(--datepicker-button-background-color-hover);
+    --datepicker-nav-action-border-radius: var(--datepicker-button-border-radius);
+    --datepicker-nav-action-color: var(--datepicker-button-color);
+    --datepicker-nav-action-color-hover: var(--datepicker-button-color-hover);
+    --datepicker-nav-action-transition-duration: var(--datepicker-button-transition-duration);
+    --datepicker-nav-title-padding: 0 12px;
+
+    --datepicker-cell-background-color: var(--datepicker-button-background-color);
+    --datepicker-cell-background-color-hover: var(--datepicker-button-background-color-hover);
+    --datepicker-cell-background-color-in-range: rgba(var(--datepicker-theme-color-rgb), 0.1);
+    --datepicker-cell-background-color-in-range-hover: rgba(var(--datepicker-theme-color-rgb), 0.25);
+    --datepicker-cell-background-color-in-range-disabled: rgba(0, 0, 0, .1);
+    --datepicker-cell-background-color-selected: var(--datepicker-theme-color);
+    --datepicker-cell-background-color-selected-hover: var(--datepicker-theme-color-darker);
+    --datepicker-cell-background-color-selected-range-disabled: #aaa;
+    --datepicker-cell-border-radius: var(--datepicker-button-border-radius);
+    --datepicker-cell-color: inherit;
+    --datepicker-cell-color-other: var(--datepicker-color-other);
+    --datepicker-cell-color-current: var(--datepicker-theme-color);
+    --datepicker-cell-color-hover: var(--datepicker-cell-color);
+    --datepicker-cell-color-selected: var(--datepicker-color-over-theme);
+    --datepicker-cell-color-selected-hover: var(--datepicker-cell-color-selected);
+    --datepicker-cell-color-selected-range-disabled: #fff;
+    --datepicker-cell-color-disabled: var(--datepicker-color-disabled);
+    --datepicker-cell-transition-duration: var(--datepicker-button-transition-duration);
+
+    --datepicker-day-name-color: var(--datepicker-color-other);
+    --datepicker-day-name-font-size: 0.875rem;
+
+    --datepicker-week-number-color: rgba(0, 0, 0, .45);
+    --datepicker-week-number-font-size: var(--datepicker-day-name-font-size);
+}

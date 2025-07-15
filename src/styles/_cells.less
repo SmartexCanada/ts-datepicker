@@ -1,0 +1,94 @@
+//
+//  Cells
+//  _____________________________________________
+
+.datepicker-cell {
+    align-items: center;
+    background-color: var(--datepicker-cell-background-color);
+    border: 1px solid transparent;
+    border-radius: var(--datepicker-cell-border-radius);
+    color: var(--datepicker-cell-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: var(--datepicker-cell-transition-duration);
+
+    &.other-month,
+    &.other-decade {
+        color: var(--datepicker-cell-color-other);
+    }
+
+    &.current {
+        color: var(--datepicker-cell-color-current);
+    }
+
+    &.focus {
+        background-color: var(--datepicker-cell-background-color-hover);
+        color: var(--datepicker-cell-color-hover);
+    }
+
+    &.range-from {
+        background-color: var(--datepicker-cell-background-color-in-range);
+        border-color: var(--datepicker-cell-background-color-selected);
+
+        &:not(.range-to) {
+            border-radius: var(--datepicker-cell-border-radius) 0 0 var(--datepicker-cell-border-radius);
+        }
+    }
+
+    &.range-to {
+        background-color: var(--datepicker-cell-background-color-in-range);
+        border-color: var(--datepicker-cell-background-color-selected);
+
+        &:not(.range-from) {
+            border-radius: 0 var(--datepicker-cell-border-radius) var(--datepicker-cell-border-radius) 0;
+        }
+    }
+
+    &.in-range {
+        background-color: var(--datepicker-cell-background-color-in-range);
+        border-radius: 0;
+
+        &.focus {
+            background-color: var(--datepicker-cell-background-color-in-range-hover);
+        }
+    }
+
+    &.selected {
+        background-color: var(--datepicker-cell-background-color-selected);
+        color: var(--datepicker-cell-color-selected);
+
+        &.focus {
+            background-color: var(--datepicker-cell-background-color-selected-hover);
+            color: var(--datepicker-cell-color-selected-hover);
+        }
+    }
+
+    &.disabled {
+        color: var(--datepicker-cell-color-disabled);
+        cursor: default;
+    }
+
+    &.week {
+        color: var(--datepicker-week-number-color);
+        cursor: default;
+        font-size: var(--datepicker-week-number-font-size);
+    }
+
+    .datepicker.range-disabled & {
+        &.range-from,
+        &.range-to {
+            background-color: var(--datepicker-cell-background-color-in-range-disabled);
+            border-color: var(--datepicker-cell-background-color-selected-range-disabled);
+        }
+
+        &.in-range {
+            background-color: var(--datepicker-cell-background-color-in-range-disabled);
+        }
+
+        &.selected {
+            background-color: var(--datepicker-cell-background-color-selected-range-disabled);
+            border-color: var(--datepicker-cell-background-color-selected-range-disabled);
+        }
+    }
+}
