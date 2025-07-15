@@ -758,6 +758,20 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
 
         this.inline = this.config.inline || !this.input;
 
+        if (!this.config.altInput && this.altInput) {
+            this._removeAltInput();
+        }
+        if (this.config.altInput) {
+            if (this.altInput
+                && this.config.altInput instanceof HTMLInputElement
+                && this.config.altInput !== this.altInput
+            ) {
+                this._removeAltInput();
+            }
+            if (!this.altInput) {
+                this._createAltInput();
+            }
+        }
         if (this.config.multipleDates === 0 || options.multipleDates === false) {
             this.config.multipleDates = 1;
         }
@@ -1049,6 +1063,21 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         }
 
         return input;
+    }
+
+    /**
+     * Remove alternate input field
+     */
+    private _removeAltInput() {
+        this.altInput?.remove();
+        this.altInput = undefined;
+
+        if (this.input) {
+            this.input.type = 'text';
+
+            if (this._inputId)
+                this.input.id = this._inputId;
+        }
     }
 
     /**
