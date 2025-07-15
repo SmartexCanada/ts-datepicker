@@ -9,11 +9,11 @@
     z-index: var(--datepicker-z-index, @datepicker--z-index);
 
     &.inline {
-        border-color: var(--datepicker-border-color-inner);
         display: inline-block;
         position: static;
 
         .datepicker-picker {
+            border: 1px solid var(--datepicker-border-color-inline);
             box-shadow: none;
         }
     }
