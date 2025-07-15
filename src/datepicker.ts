@@ -933,9 +933,9 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             }
         }
 
-        if (localeData) {
-            this.locale = { ...DatePicker.locales.default, ...localeData };
-        }
+        this.locale = localeData
+            ? { ...DatePicker.locales.default, ...localeData }
+            : DatePicker.locales.default;
 
         this.dateFormat = dateFormat && isFormatValid(dateFormat)
             ? dateFormat
