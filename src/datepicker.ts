@@ -161,7 +161,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         exitEditMode: this._exitEditMode.bind(this)
     };
 
-    constructor(element: E | string, options: DatePickerOptions<E>) {
+    constructor(element: E | string, options?: DatePickerOptions<E>) {
         super();
 
         const _element = typeof element === 'string' ? document.querySelector<E>(element) : element;
