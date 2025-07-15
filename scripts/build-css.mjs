@@ -32,6 +32,6 @@ await esbuild.build({
     legalComments: 'none'
 });
 
-await move('./build/index.css', './dist/index.css', { overwrite: true });
-await move('./build/index.min.css', './dist/index.min.css', { overwrite: true });
+await move('./build/index.css', './dist/datepicker.css', { overwrite: true });
+await move('./build/index.min.css', './dist/datepicker.min.css', { overwrite: true });
 await remove('./build');

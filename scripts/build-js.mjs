@@ -9,7 +9,9 @@ export const outdir = 'dist';
 export const banner = `/*! ts-datepicker v${packageConfig.version}, @license MIT */`
 
 const options = {
-    entryPoints: ['./src/index.ts'],
+    entryPoints: [
+        {in: './src/index.ts', out: 'datepicker'}
+    ],
     target,
     bundle: true,
     legalComments: 'inline',
@@ -22,9 +24,9 @@ const options = {
 
 const esmOptions = {
     ...options,
+    entryNames: '[dir]/[name].esm',
     format: 'esm',
     charset: 'utf8',
-    outExtension: {'.js': '.mjs'}
 };
 
 const umdOptions = {
@@ -45,7 +47,11 @@ const minifyOptions = {
 };
 
 await build(esmOptions);
-await build({ ...esmOptions, ...minifyOptions });
+await build({
+    ...esmOptions,
+    ...minifyOptions,
+    entryNames: '[dir]/[name].esm.min'
+});
 
 await build(umdOptions);
 await build({ ...umdOptions, ...minifyOptions });
@@ -54,11 +60,11 @@ await emptyDir('dist/locales');
 
 await build({
     entryPoints: ['./src/i18n/locales/*.ts'],
+    entryNames: '[dir]/[name].esm',
     target,
     bundle: false,
     outdir,
     outbase: 'src/i18n',
     charset: 'utf8',
     format: 'esm',
-    outExtension: {'.js': '.mjs'}
 });

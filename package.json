@@ -4,10 +4,10 @@
     "description": "Lightweight, dependency-free datepicker written in typescript.",
     "license": "MIT",
     "type": "module",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
-    "types": "dist/index.d.ts",
-    "browser": "dist/index.min.js",
+    "main": "dist/datepicker.js",
+    "module": "dist/datepicker.esm.js",
+    "types": "dist/types/index.d.ts",
+    "browser": "dist/datepicker.min.js",
     "scripts": {
         "build:js": "node scripts/build-js.mjs",
         "build:types": "npm run clean-types && tspc --emitDeclarationOnly && npm run fix-types",
@@ -35,14 +35,13 @@
         ".": {
             "node": null,
             "types": "./dist/types/index.d.ts",
-            "import": "./dist/index.min.mjs",
-            "require": "./dist/index.min.js",
-            "default": "./dist/index.min.js"
+            "import": "./dist/datepicker.esm.min.js",
+            "require": "./dist/datepicker.min.js",
+            "default": "./dist/datepicker.min.js"
         },
         "./locales/*": {
             "types": "./dist/types/i18n/locales/*.d.ts",
-            "import": "./dist/locales/*.mjs",
-            "default": "./dist/locales/*.js"
+            "import": "./dist/locales/*.esm.js"
         }
     }
 }
