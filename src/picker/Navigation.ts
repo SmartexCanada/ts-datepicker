@@ -41,6 +41,7 @@ export class Navigation<E extends HTMLElement = HTMLInputElement> {
         this.element.classList.add(classes.navContainer);
 
         this._buildHtml();
+        this._updateArrows();
 
         this.changeViewListener = () => this._onChangeView();
         this.changeDateListener = () => setTimeout(() => this.render());
@@ -86,6 +87,7 @@ export class Navigation<E extends HTMLElement = HTMLInputElement> {
     public update() {
         this.render();
         this._updateNavStatus();
+        this._updateArrows();
     }
 
     /**
@@ -97,17 +99,24 @@ export class Navigation<E extends HTMLElement = HTMLInputElement> {
         this.titleClickListener = () => this.datePicker.changeView('up');
 
         const { nextArrow, prevArrow } = this.datePicker.config;
+        const rtl = this.datePicker.rtl;
 
         this.prevButton = document.createElement('button');
         this.prevButton.classList.add(classes.navAction, 'prev');
         this.prevButton.setAttribute('data-action', 'prev');
-        this.prevButton.append(parseHTML(prevArrow || defaultPrevArrow));
+        this.prevButton.append(parseHTML(rtl
+            ? (nextArrow || defaultNextArrow)
+            : (prevArrow || defaultPrevArrow)
+        ));
         this.prevButton.addEventListener('click', this.prevClickListener);
 
         this.nextButton = document.createElement('button');
         this.nextButton.classList.add(classes.navAction, 'next');
         this.nextButton.setAttribute('data-action', 'next');
-        this.nextButton.append(parseHTML(nextArrow || defaultNextArrow));
+        this.nextButton.append(parseHTML(rtl
+            ? (prevArrow || defaultPrevArrow)
+            : (nextArrow || defaultNextArrow)
+        ));
         this.nextButton.addEventListener('click', this.nextClickListener);
 
         this.titleElement = document.createElement('button');
@@ -115,6 +124,26 @@ export class Navigation<E extends HTMLElement = HTMLInputElement> {
         this.titleElement.addEventListener('click', this.titleClickListener);
 
         this.element.append(this.prevButton, this.titleElement, this.nextButton);
+    }
+
+    /**
+     * Update arrows content
+     */
+    private _updateArrows() {
+        const { nextArrow, prevArrow } = this.datePicker.config;
+        const rtl = this.datePicker.rtl;
+
+        this.prevButton.innerHTML = '';
+        this.prevButton.append(parseHTML(rtl
+            ? (nextArrow || defaultNextArrow)
+            : (prevArrow || defaultPrevArrow)
+        ));
+
+        this.nextButton.innerHTML = '';
+        this.nextButton.append(parseHTML(rtl
+            ? (prevArrow || defaultPrevArrow)
+            : (nextArrow || defaultNextArrow)
+        ));
     }
 
     /**
