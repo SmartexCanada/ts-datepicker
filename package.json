@@ -8,6 +8,36 @@
     "module": "dist/datepicker.esm.js",
     "types": "dist/types/index.d.ts",
     "browser": "dist/datepicker.min.js",
+    "exports": {
+        ".": {
+            "node": null,
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/datepicker.esm.min.js",
+            "require": "./dist/datepicker.min.js",
+            "default": "./dist/datepicker.min.js"
+        },
+        "./locales/*": {
+            "types": "./dist/types/i18n/locales/*.d.ts",
+            "import": "./dist/locales/*.esm.js"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SmartexCanada/ts-datepicker.git"
+    },
+    "bugs": {
+        "url": "https://github.com/SmartexCanada/ts-datepicker/issues"
+    },
+    "homepage": "https://github.com/SmartexCanada/ts-datepicker#readme",
+    "author": "Smartex Canada",
+    "keywords": [
+        "typescript",
+        "datepicker",
+        "calendar",
+        "date",
+        "picker",
+        "lightweight"
+    ],
     "scripts": {
         "build:js": "node scripts/build-js.mjs",
         "build:types": "npm run clean-types && tspc --emitDeclarationOnly && npm run fix-types",
@@ -30,18 +60,5 @@
         "ts-patch": "^3.3.0",
         "typescript": "^5.8.3",
         "typescript-transform-paths": "^3.5.5"
-    },
-    "exports": {
-        ".": {
-            "node": null,
-            "types": "./dist/types/index.d.ts",
-            "import": "./dist/datepicker.esm.min.js",
-            "require": "./dist/datepicker.min.js",
-            "default": "./dist/datepicker.min.js"
-        },
-        "./locales/*": {
-            "types": "./dist/types/i18n/locales/*.d.ts",
-            "import": "./dist/locales/*.esm.js"
-        }
     }
 }
