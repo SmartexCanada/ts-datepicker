@@ -138,14 +138,14 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     private changeSelectedListener: TEventHandler<_ChangeSelectedDateEventDetail>;
     private changeFocusedListener: TEventHandler<_ChangeFocusedDateEventDetail>;
 
-    private inputBlurListener?: SpecificEventListener<'blur'>;
-    private inputClickListener?: SpecificEventListener<'click'>;
-    private inputFocusListener?: SpecificEventListener<'focus'>;
-    private inputMouseDownListener?: SpecificEventListener<'mousedown'>;
-    private inputPasteListener?: SpecificEventListener<'paste'>;
-    private mouseDownListener?: SpecificEventListener<'mousedown'>;
-    private mouseUpListener?: SpecificEventListener<'mouseup'>;
-    private resizeListener?: SpecificEventListener<'resize'>;
+    private inputBlurListener: SpecificEventListener<'blur'>;
+    private inputClickListener: SpecificEventListener<'click'>;
+    private inputFocusListener: SpecificEventListener<'focus'>;
+    private inputMouseDownListener: SpecificEventListener<'mousedown'>;
+    private inputPasteListener: SpecificEventListener<'paste'>;
+    private mouseDownListener: SpecificEventListener<'mousedown'>;
+    private mouseUpListener: SpecificEventListener<'mouseup'>;
+    private resizeListener: SpecificEventListener<'resize'>;
 
     /**
      * @private
@@ -191,8 +191,23 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
 
         this._bindConfigEvents();
 
+        this.inputBlurListener = this._onBlurInput.bind(this);
+        this.inputClickListener = () => this._onClickInput();
+        this.inputFocusListener = () => this._onFocusInput();
+        this.inputMouseDownListener = () => this._onMouseDownInput();
+        this.inputPasteListener = this._onPasteInput.bind(this);
+        this.mouseDownListener = () => this._onMouseDown();
+        this.mouseUpListener = () => this._onMouseUp();
+        this.resizeListener = debounce(() => this._onResize(), 300);
+
+        this.pickerElement.addEventListener('mousedown', this.mouseDownListener);
+        this.pickerElement.addEventListener('mouseup', this.mouseUpListener);
+
         if (this.input || this.altInput) {
             this._bindInputEvents();
+        }
+        if (!this.inline) {
+            window.addEventListener('resize', this.resizeListener);
         }
 
         if (this.config.keyboardNav) {
@@ -214,19 +229,12 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         this.off();
         this.hide();
 
-        const input = (this.altInput || this.input);
-        if (input) {
-            input.removeEventListener('click', this.inputClickListener!);
-            input.removeEventListener('focus', this.inputFocusListener!);
-            input.removeEventListener('blur', this.inputBlurListener!);
-            input.removeEventListener('mousedown', this.inputMouseDownListener!);
-            input.removeEventListener('paste', this.inputPasteListener!);
+        this._removeInputEvents();
 
-            this.pickerElement.removeEventListener('mousedown', this.mouseDownListener!);
-            this.pickerElement.removeEventListener('mouseup', this.mouseUpListener!);
+        this.pickerElement.removeEventListener('mousedown', this.mouseDownListener);
+        this.pickerElement.removeEventListener('mouseup', this.mouseUpListener);
 
-            window.removeEventListener('resize', this.resizeListener!);
-        }
+        window.removeEventListener('resize', this.resizeListener);
 
         this._keyboardNav?.destroy();
 
@@ -745,6 +753,8 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     /**
      * Update date picker options.
      *
+     * (Does not process event listener options, use the on/off methods instead.)
+     *
      * @param silent silence view/date change events
      */
     public update(options: DatePickerOptions, silent: boolean = false) {
@@ -757,6 +767,11 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         this.currentView = currentView;
 
         this.inline = this.config.inline || !this.input;
+
+        window.removeEventListener('resize', this.resizeListener);
+        if (!this.inline) {
+            window.addEventListener('resize', this.resizeListener);
+        }
 
         if (!this.config.altInput && this.altInput) {
             this._removeAltInput();
@@ -772,6 +787,11 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
                 this._createAltInput();
             }
         }
+        if (this.altInput || this.input) {
+            this._removeInputEvents();
+            this._bindInputEvents();
+        }
+
         if (this.config.multipleDates === 0 || options.multipleDates === false) {
             this.config.multipleDates = 1;
         }
@@ -839,6 +859,11 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             this._buttons?.update();
             this._navigation?.update();
             this._views[this.currentView]?.update();
+
+            const input = this.altInput || this.input;
+            if (input && !this.inline) {
+                this._setPosition();
+            }
         }
     }
 
@@ -987,20 +1012,11 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     }
 
     /**
-     * Bind events for input
+     * Bind input event listeners
      */
     private _bindInputEvents() {
         const input = this.altInput || this.input!;
         const showOn = this.config.showOn;
-
-        this.inputBlurListener = this._onBlurInput.bind(this);
-        this.inputClickListener = () => this._onClickInput();
-        this.inputFocusListener = () => this._onFocusInput();
-        this.inputMouseDownListener = () => this._onMouseDownInput();
-        this.inputPasteListener = this._onPasteInput.bind(this);
-        this.mouseDownListener = () => this._onMouseDown();
-        this.mouseUpListener = () => this._onMouseUp();
-        this.resizeListener = debounce(() => this._onResize(), 300);
 
         if (showOn === 'click' || showOn === true) {
             input.addEventListener('mousedown', this.inputMouseDownListener);
@@ -1012,13 +1028,23 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
 
         input.addEventListener('blur', this.inputBlurListener);
         input.addEventListener('paste', this.inputPasteListener);
+    }
 
-        this.pickerElement.addEventListener('mousedown', this.mouseDownListener);
-        this.pickerElement.addEventListener('mouseup', this.mouseUpListener);
+    /**
+     * Remove input event listeners
+     */
+    private _removeInputEvents() {
+        this.input?.removeEventListener('click', this.inputClickListener);
+        this.input?.removeEventListener('focus', this.inputFocusListener);
+        this.input?.removeEventListener('blur', this.inputBlurListener);
+        this.input?.removeEventListener('mousedown', this.inputMouseDownListener);
+        this.input?.removeEventListener('paste', this.inputPasteListener);
 
-        if (!this.inline) {
-            window.addEventListener('resize', this.resizeListener);
-        }
+        this.altInput?.removeEventListener('click', this.inputClickListener);
+        this.altInput?.removeEventListener('focus', this.inputFocusListener);
+        this.altInput?.removeEventListener('blur', this.inputBlurListener);
+        this.altInput?.removeEventListener('mousedown', this.inputMouseDownListener);
+        this.altInput?.removeEventListener('paste', this.inputPasteListener);
     }
 
     /**
@@ -1667,7 +1693,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
     private _onMouseUp() {
         this.focused = false;
 
-        (this.altInput || this.input!).focus();
+        (this.altInput || this.input)?.focus();
     }
 
     /**
