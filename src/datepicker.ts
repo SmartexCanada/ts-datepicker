@@ -822,6 +822,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         if (this.config.buttons && !this._buttons && this._rendered) {
             this._initButtons();
         }
+        this._buttons?.update();
 
         if (oldConfig.buttons && !this.config.buttons) {
             this.buttonsElement?.remove();
@@ -853,11 +854,10 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         classList.toggle(classes.inline, this.inline);
         classList.toggle(classes.hasWeekNumbers, this.config.weekNumbers);
 
+        this._navigation?.update();
         if (this.visible || this.inline) {
             classList.add(classes.active);
 
-            this._buttons?.update();
-            this._navigation?.update();
             this._views[this.currentView]?.update();
 
             const input = this.altInput || this.input;
