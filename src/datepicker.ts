@@ -161,10 +161,15 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         exitEditMode: this._exitEditMode.bind(this)
     };
 
-    constructor(element: E, options: DatePickerOptions<E>) {
+    constructor(element: E | string, options: DatePickerOptions<E>) {
         super();
 
-        this.element = element;
+        const _element = typeof element === 'string' ? document.querySelector<E>(element) : element;
+        if (!_element) {
+            throw new Error('Could not find element to initialize DatePicker');
+        }
+        this.element = _element;
+
         (this.element as any).datePicker = this;
         instances.set<E>(this.element, this);
 
