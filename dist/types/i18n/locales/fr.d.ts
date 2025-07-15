@@ -7,7 +7,5 @@
  * @see https://fr.wikipedia.org/wiki/Mois
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    fr: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

@@ -3,7 +3,5 @@
  * Sagie Maoz <sagie@maoz.info>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    he: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

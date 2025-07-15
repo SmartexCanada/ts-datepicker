@@ -3,7 +3,5 @@
  * Igor Polynets
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    uk: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

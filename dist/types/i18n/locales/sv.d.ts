@@ -3,7 +3,5 @@
  * Patrik Ragnarsson <patrik@starkast.net>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    sv: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

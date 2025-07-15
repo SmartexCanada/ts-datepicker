@@ -3,7 +3,5 @@
  * Hayk Chamyan <hamshen@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    hy: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

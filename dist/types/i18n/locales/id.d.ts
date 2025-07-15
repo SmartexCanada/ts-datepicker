@@ -4,7 +4,5 @@
  * Ardeman <mail@ardeman.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    id: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

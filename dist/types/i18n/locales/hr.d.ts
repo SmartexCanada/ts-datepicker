@@ -2,7 +2,5 @@
  * Croatian localisation
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    hr: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

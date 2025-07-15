@@ -6,7 +6,5 @@
  * Nico Mollet <nico.mollet@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'fr-CH': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

@@ -3,7 +3,5 @@
  * N'Bayramberdiyev <nbayramberdiyev@outlook.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    tk: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

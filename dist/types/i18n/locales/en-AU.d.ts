@@ -3,7 +3,5 @@
  * Steve Chapman <steven.p.chapman@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'en-AU': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

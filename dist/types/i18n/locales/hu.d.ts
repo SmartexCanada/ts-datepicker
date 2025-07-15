@@ -3,7 +3,5 @@
  * Sotus László <lacisan@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    hu: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

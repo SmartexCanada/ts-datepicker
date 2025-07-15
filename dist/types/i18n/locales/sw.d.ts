@@ -4,7 +4,5 @@
  * Source: http: //scriptsource.org/cms/scripts/page.php?item_id=entry_detail&uid=xnfaqyzcku
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    sw: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

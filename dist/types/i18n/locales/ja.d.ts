@@ -3,7 +3,5 @@
  * Norio Suzuki <https: //github.com/suzuki/>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    ja: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

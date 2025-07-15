@@ -3,7 +3,5 @@
  * Mohammed Alshehri <alshehri866@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    ar: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

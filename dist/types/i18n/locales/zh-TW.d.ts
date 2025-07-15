@@ -4,7 +4,5 @@
  * FrankWu  <frankwu100@gmail.com> Fix more appropriate use of Traditional Chinese habit
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'zh-TW': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

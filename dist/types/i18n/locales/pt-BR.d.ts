@@ -3,7 +3,5 @@
  * Cauan Cabral <cauan@radig.com.br>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'pt-BR': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

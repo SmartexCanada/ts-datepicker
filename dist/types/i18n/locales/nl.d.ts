@@ -3,7 +3,5 @@
  * Reinier Goltstein <mrgoltstein@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    nl: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

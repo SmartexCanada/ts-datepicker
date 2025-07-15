@@ -3,7 +3,5 @@
  * Bojan Milosavlević <milboj@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    sr: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 
 const localeDir = `${rootDir}/dist/types/i18n/locales`;
-const rePattern = /(declare const _default: \{[\s\S]+?: )(\{[\s\S]+?\};)([\s\S]+)/m;
+const rePattern = /(declare const _default: )(\{[\s\S]+?\};)([\s\S]+)/m;
 
 const files = await readdir(localeDir);
 

@@ -3,7 +3,5 @@
  * Jaakko Salonen <https: //github.com/jsalonen>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    fi: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

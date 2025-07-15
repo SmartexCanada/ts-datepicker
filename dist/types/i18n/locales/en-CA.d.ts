@@ -3,7 +3,5 @@
  * Mike Nacey <mnacey@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'en-CA': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

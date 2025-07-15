@@ -3,7 +3,5 @@
  * Gwenn Meynier <tornoz@laposte.net>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    br: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

@@ -3,7 +3,5 @@
  * Rabah Saadi <infosrabah@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'ar-DZ': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

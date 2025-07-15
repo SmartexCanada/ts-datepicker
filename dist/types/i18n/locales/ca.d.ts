@@ -3,7 +3,5 @@
  * J. Garcia <jogaco.en@gmail.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    ca: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

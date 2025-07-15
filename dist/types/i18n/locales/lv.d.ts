@@ -3,7 +3,5 @@
  * Artis Avotins <artis@apit.lv>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    lv: CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;

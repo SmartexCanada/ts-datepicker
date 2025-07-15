@@ -3,7 +3,5 @@
  * Xavier Dutreilh <xavier@dutreilh.com>
  */
 import { CustomLocale } from "../../types/locale";
-declare const _default: {
-    'en-GB': CustomLocale;
-};
+declare const _default: CustomLocale;
 export default _default;
