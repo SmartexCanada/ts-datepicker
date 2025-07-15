@@ -6,14 +6,14 @@ A lightweight and dependency-free datepicker written in Typescript.
 
 ## Install
 ```bash
-npm install ts-datepicker
+npm install @smartexcan/ts-datepicker
 ```
 
 ## Usage
 TS Datepicker ships in both ESM and UMD format.
 
 ```js
-import DatePicker from "ts-datepicker";
+import DatePicker from "@smartexcan/ts-datepicker";
 
 new DatePicker(elementOrSelector [, options]);
 ```
@@ -39,15 +39,15 @@ You can supply a custom locale, or import them from `dist/locales`.
 (Please see `dist/locales` for available locales. Locales are only supplied as ES modules.)
 
 ```js
-import DatePicker from "ts-datepicker";
-import { fr } from "ts-datepicker/locales/fr";
+import DatePicker from "@smartexcan/ts-datepicker";
+import frCH from "@smartexcan/ts-datepicker/locales/fr-CH";
 
 // add to global locale cache
-DatePicker.locales.fr = fr;
-new DatePicker(element, { locale: 'fr' });
+DatePicker.locales['fr-CH'] = frCH;
+new DatePicker(element, { locale: 'fr-CH' });
 
 // use imported/custom locale directly
-new DatePicker(element, { locale: fr });
+new DatePicker(element, { locale: frCH });
 
 // custom locale
 const locale = {
