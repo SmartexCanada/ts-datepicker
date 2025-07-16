@@ -1,4 +1,4 @@
-/*! ts-datepicker v1.0.0, @license MIT */
+/*! ts-datepicker v1.0.2, @license MIT */
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;

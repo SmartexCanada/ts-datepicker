@@ -1,4 +1,4 @@
-/*! ts-datepicker v1.0.0, @license MIT */
+/*! ts-datepicker v1.0.2, @license MIT */
 (function(g,f){if(typeof exports=="object"&&typeof module<"u"){module.exports=f()}else if("function"==typeof define && define.amd){define(f)}else {g["DatePicker"]=f()}}(typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : this,function(){var exports={};var __exports=exports;var module={exports};
 "use strict";
 var __defProp = Object.defineProperty;
