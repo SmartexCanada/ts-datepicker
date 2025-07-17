@@ -1,5 +1,5 @@
 # TS Datepicker
-![NPM Version](https://img.shields.io/npm/v/%40smartexcan%2Fts-datepicker)
+[![NPM Version](https://img.shields.io/npm/v/%40smartexcan%2Fts-datepicker)](https://www.npmjs.com/package/@smartexcan/ts-datepicker)
 
 A lightweight and dependency-free datepicker written in Typescript.
 
