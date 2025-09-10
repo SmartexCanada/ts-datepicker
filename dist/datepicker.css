@@ -43,6 +43,7 @@
   --datepicker-nav-action-border-radius: var(--datepicker-button-border-radius);
   --datepicker-nav-action-color: var(--datepicker-button-color);
   --datepicker-nav-action-color-hover: var(--datepicker-button-color-hover);
+  --datepicker-nav-action-padding: 4px;
   --datepicker-nav-action-transition-duration: var(--datepicker-button-transition-duration);
   --datepicker-nav-title-padding: 0 12px;
   --datepicker-cell-background-color: var(--datepicker-button-background-color);
@@ -177,7 +178,7 @@
   flex-shrink: 0;
   font-weight: 700;
   justify-content: center;
-  padding: 4px;
+  padding: var(--datepicker-nav-action-padding);
   width: var(--datepicker-nav-action-size);
 }
 .datepicker-nav--title {
