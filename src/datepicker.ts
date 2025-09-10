@@ -919,6 +919,12 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
         let { dateFormat, locale, maxView, minView, startView: view } = config;
         let localeData: CustomLocale | null = null;
 
+        // check for 'format' option if dateFormat is empty
+        if (!dateFormat && 'format' in config && config.format) {
+            dateFormat = config.format as string | DatePickerFormat;
+            config.dateFormat = dateFormat;
+        }
+
         if (locale && typeof locale !== 'string') {
             localeData = locale;
         }
