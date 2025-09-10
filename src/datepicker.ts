@@ -1556,6 +1556,9 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
                 this.selectDate(oldDates);
             }
         }
+        else if (value === '') {
+            this.clear();
+        }
     }
 
     /**
