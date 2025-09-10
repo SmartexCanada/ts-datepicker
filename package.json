@@ -1,6 +1,6 @@
 {
     "name": "@smartexcan/ts-datepicker",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Lightweight, dependency-free datepicker written in typescript.",
     "license": "MIT",
     "type": "module",

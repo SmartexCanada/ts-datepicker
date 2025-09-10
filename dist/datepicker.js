@@ -1,4 +1,4 @@
-/*! ts-datepicker v1.0.2, @license MIT */
+/*! ts-datepicker v1.0.4, @license MIT */
 (function(g,f){if(typeof exports=="object"&&typeof module<"u"){module.exports=f()}else if("function"==typeof define && define.amd){define(f)}else {g["DatePicker"]=f()}}(typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : this,function(){var exports={};var __exports=exports;var module={exports};
 "use strict";
 var __defProp = Object.defineProperty;
@@ -2612,6 +2612,10 @@ var _DatePicker = class _DatePicker extends Eventable {
     const config = this.config;
     let { dateFormat, locale, maxView, minView, startView: view } = config;
     let localeData = null;
+    if (!dateFormat && "format" in config && config.format) {
+      dateFormat = config.format;
+      config.dateFormat = dateFormat;
+    }
     if (locale && typeof locale !== "string") {
       localeData = locale;
     } else if (typeof locale === "string" && locale !== "default") {
@@ -3107,6 +3111,8 @@ var _DatePicker = class _DatePicker extends Eventable {
       if (!this.selectDate(value)) {
         this.selectDate(oldDates);
       }
+    } else if (value === "") {
+      this.clear();
     }
   }
   /**
