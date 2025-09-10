@@ -1,4 +1,4 @@
-/*! ts-datepicker v1.0.4, @license MIT */
+/*! ts-datepicker v1.0.5, @license MIT */
 (function(g,f){if(typeof exports=="object"&&typeof module<"u"){module.exports=f()}else if("function"==typeof define && define.amd){define(f)}else {g["DatePicker"]=f()}}(typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : this,function(){var exports={};var __exports=exports;var module={exports};
 "use strict";
 var __defProp = Object.defineProperty;
@@ -709,6 +709,7 @@ var Keyboard = class {
       event.preventDefault();
       return;
     }
+    this.datePicker.adapter.enterEditMode();
   }
   /**
    * Retrieve matching keybinds for given event
@@ -2784,7 +2785,8 @@ var _DatePicker = class _DatePicker extends Eventable {
    * Process dates from input and options
    */
   _processDates() {
-    const preloadedDate = this.config.defaultDate || this.input && (this.input.placeholder && this.input.value === this.input.placeholder ? null : this.input.value) || this.element.dataset.date || null;
+    var _a;
+    const preloadedDate = this.config.defaultDate || ((_a = this.input) == null ? void 0 : _a.value) || this.element.dataset.date || null;
     if (preloadedDate) {
       this.selectDate(preloadedDate, true);
     }
@@ -3104,14 +3106,14 @@ var _DatePicker = class _DatePicker extends Eventable {
     if (!input) {
       return;
     }
-    const value = input.placeholder && input.value === input.placeholder ? null : input.value;
+    const value = input.value;
     if (value) {
       const oldDates = this.selectedDates.slice();
       this.clear();
       if (!this.selectDate(value)) {
         this.selectDate(oldDates);
       }
-    } else if (value === "") {
+    } else {
       this.clear();
     }
   }
