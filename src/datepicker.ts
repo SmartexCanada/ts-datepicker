@@ -1139,10 +1139,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
      */
     private _processDates() {
         const preloadedDate = this.config.defaultDate
-            || (this.input && (this.input.placeholder && this.input.value === this.input.placeholder
-                ? null
-                : this.input.value
-            ))
+            || this.input?.value
             || this.element.dataset.date
             || null;
 
@@ -1547,7 +1544,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             return;
         }
 
-        const value = input.placeholder && input.value === input.placeholder ? null : input.value;
+        const value = input.value;
         if (value) {
             const oldDates = this.selectedDates.slice();
             this.clear();
@@ -1555,8 +1552,7 @@ export class DatePicker<E extends HTMLElement = HTMLInputElement>
             if (!this.selectDate(value)) {
                 this.selectDate(oldDates);
             }
-        }
-        else if (value === '') {
+        } else {
             this.clear();
         }
     }

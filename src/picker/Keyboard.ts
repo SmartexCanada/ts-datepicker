@@ -197,6 +197,8 @@ export class Keyboard<E extends HTMLElement = HTMLInputElement> {
             event.preventDefault();
             return;
         }
+
+        this.datePicker.adapter.enterEditMode();
     }
 
     /**
