@@ -1,4 +1,4 @@
-/*! ts-datepicker v1.0.5, @license MIT */
+/*! ts-datepicker v1.0.6, @license MIT */
 (function(g,f){if(typeof exports=="object"&&typeof module<"u"){module.exports=f()}else if("function"==typeof define && define.amd){define(f)}else {g["DatePicker"]=f()}}(typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : this,function(){var exports={};var __exports=exports;var module={exports};
 "use strict";
 var __defProp = Object.defineProperty;
@@ -709,7 +709,17 @@ var Keyboard = class {
       event.preventDefault();
       return;
     }
-    this.datePicker.adapter.enterEditMode();
+    const input = this.datePicker.altInput || this.datePicker.input;
+    if ((key === "backspace" || key === "delete") && input) {
+      setTimeout(() => {
+        if (input.value === "") {
+          this.datePicker.clear();
+        }
+      });
+    }
+    if (!isEditMode) {
+      this.datePicker.adapter.enterEditMode();
+    }
   }
   /**
    * Retrieve matching keybinds for given event

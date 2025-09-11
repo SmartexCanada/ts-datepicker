@@ -1,4 +1,4 @@
-/*! ts-datepicker v1.0.5, @license MIT */
+/*! ts-datepicker v1.0.6, @license MIT */
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
@@ -685,7 +685,17 @@ var Keyboard = class {
       event.preventDefault();
       return;
     }
-    this.datePicker.adapter.enterEditMode();
+    const input = this.datePicker.altInput || this.datePicker.input;
+    if ((key === "backspace" || key === "delete") && input) {
+      setTimeout(() => {
+        if (input.value === "") {
+          this.datePicker.clear();
+        }
+      });
+    }
+    if (!isEditMode) {
+      this.datePicker.adapter.enterEditMode();
+    }
   }
   /**
    * Retrieve matching keybinds for given event
