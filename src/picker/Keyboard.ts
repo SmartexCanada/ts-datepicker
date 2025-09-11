@@ -198,7 +198,18 @@ export class Keyboard<E extends HTMLElement = HTMLInputElement> {
             return;
         }
 
-        this.datePicker.adapter.enterEditMode();
+        const input = this.datePicker.altInput || this.datePicker.input;
+        if ((key === 'backspace' || key === 'delete') && input) {
+            setTimeout(() => {
+                if (input.value === '') {
+                    this.datePicker.clear();
+                }
+            });
+        }
+
+        if (!isEditMode) {
+            this.datePicker.adapter.enterEditMode();
+        }
     }
 
     /**
